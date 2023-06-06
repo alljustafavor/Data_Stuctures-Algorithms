@@ -30,15 +30,15 @@ console.log(containsDuplicate([1, 2, 3, 4, 5])); // output: false
 console.log(containsDuplicate([1, 1, 2, 3, 4, 5])); // output: true
 ```
 
-<ol>
-<li>We declare a variable called right and initialize it to 0 because we need to keep track of the current index of the rightmost element in the array. We start at 0 because we know that the first element in the array is not a duplicate of itself.</li>
-<li>We create a loop that iterates from 0 to the length of the array because we need to compare each element in the array to all of the elements that come after it.</li>
-<li>We declare a variable called left and initialize it to 0 because we need to keep track of the current index of the leftmost element in the array. We start at 0 because we know that the first element in the array is not a duplicate of itself.</li>
-<li>We create a nested loop that iterates from 0 to right because we need to compare the current element to all of the elements that come before it.
-We compare the values of the left and right variables because if they are equal, then the element at the left index is a duplicate of the element at the right index.</li>
-<li>If a duplicate is found, we return true because this indicates that the array contains at least one duplicate element.</li>
-<li>After the outer loop has finished iterating, we return false because this indicates that no duplicates were found in the array.</li>
-</ol>
+
+1. We declare a variable called right and initialize it to 0 because we need to keep track of the current index of the rightmost element in the array. We start at 0 because we know that the first element in the array is not a duplicate of itself.
+1. We create a loop that iterates from 0 to the length of the array because we need to compare each element in the array to all of the elements that come after it.
+3. We declare a variable called left and initialize it to 0 because we need to keep track of the current index of the leftmost element in the array. We start at 0 because we know that the first element in the array is not a duplicate of itself.
+4. We create a nested loop that iterates from 0 to right because we need to compare the current element to all of the elements that come before it.
+We compare the values of the left and right variables because if they are equal, then the element at the left index is a duplicate of the element at the right index.
+5.If a duplicate is found, we return true because this indicates that the array contains at least one duplicate element.
+6. After the outer loop has finished iterating, we return false because this indicates that no duplicates were found in the array.
+
 
 ### Sort - HeapSort Space O(1) | QuickSort Space O(log(N)) ./ARRAY/hashSetContainsDuplicate.js
 
