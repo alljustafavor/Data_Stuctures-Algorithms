@@ -7,7 +7,8 @@
 
 ### Brute Force - Linear Search ./ARRAY/BFcontainsDuplicate.js
 
-```// Brute 
+```javascript
+// Brute 
 // Time O(n) | Space O(1)
 // https://leetcode.com/problems/contains-duplicate/
 // Param {number[]} nums 
@@ -41,6 +42,34 @@ We compare the values of the left and right variables because if they are equal,
 
 ### Sort - HeapSort Space O(1) | QuickSort Space O(log(N)) ./ARRAY/hashSetContainsDuplicate.js
 
+```javascript
+// Sort - HeapSort Space O(1) | QuickSort Space O(log(N))
+// Time O(N * log(N)) | Space O(1)
+// https://leetcode.com/problems/contains-duplicate/
+// @param {number[]} nums
+// @return {boolean}
+
+const containsDuplicate = nums => {
+    nums.sort((a, b) => a - b); //Time O(N * log(N)) | Space O(1 || log(N))
+
+    return hasDuplicates(nums);
+}
+
+const hasDuplicates = nums => {
+    for (let curr = 0; curr < (nums.length - 1); curr++) {//Time O(N) 
+        const next = (curr + 1);
+
+        const isNextDuplicate = nums[curr] === nums[next];
+        if (isNextDuplicate) return true;
+    }
+
+    return false
+}
+
+console.log(containsDuplicate([1, 2, 3, 4, 5])); // output: false
+console.log(containsDuplicate([1, 1, 2, 3, 4, 5])); // output: true
+```
+
 <ol>
 <li>We sort the array because this will allow us to easily compare each element to the elements that come after it.</li>
 <li>We create a function called hasDuplicates because this will allow us to focus on the task of checking for duplicates in the sorted array.</li>
@@ -51,6 +80,24 @@ We compare the values of the left and right variables because if they are equal,
 </ol>
 
 ### Hash Set
+
+```javascript
+//  Hash Set 
+//  Time O(N) | Space O(N)
+//  @param {number[]} nums
+//  @return {boolean}
+
+const containsDuplicate = nums => {
+    const numSet = new Set(nums);
+    const isEqual = numSet.size === nums.length
+
+    return !isEqual;
+}
+
+console.log(containsDuplicate([1, 2, 3, 4, 5])); // output: false
+console.log(containsDuplicate([1, 1, 2, 3, 4, 5])); // output: true
+```
+
 <ol>
 <li>Create a new Set object and pass the array nums as an argument. This will create a set that contains the unique elements of the array.</li>
 <li>Get the size of the Set object. This will tell us how many unique elements are in the array.</li>
@@ -59,6 +106,28 @@ We compare the values of the left and right variables because if they are equal,
 </ol>
 
 ### Hash Set - Early Exit
+
+```javascript
+// Hash Set - Early Exit
+// Time O(N) | Space O(N)
+// https://leetcode.com/problems/contains-duplicate/
+// @param {number[]} nums
+// @return {boolean}
+
+const containsDuplicate = (nums, numSet = new Set()) => {
+    for (num of nums) { // Time O(N)
+        if (numSet.has(num)) return true;
+
+        numSet.add(num); // Space O(N)
+    }
+
+    return false;
+}
+
+console.log(containsDuplicate([1, 2, 3, 4, 5])); // output: false
+console.log(containsDuplicate([1, 1, 2, 3, 4, 5])); // output: true
+```
+
 <ol>
 <li>Create a new Set object and pass the array nums as an argument. This will create a set that contains the unique elements of the array.</li>
 <li>Iterate over the array nums</li>
