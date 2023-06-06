@@ -1,6 +1,3 @@
---------
-tags: [DSA]
---------
 
 # Data Stuctures and Algorithms
 
@@ -9,6 +6,28 @@ tags: [DSA]
 # containsDuplicate()
 
 ### Brute Force - Linear Search ./ARRAY/BFcontainsDuplicate.js
+
+```// Brute 
+// Time O(n) | Space O(1)
+// https://leetcode.com/problems/contains-duplicate/
+// Param {number[]} nums 
+// Return {boolean}
+
+const containsDuplicate = nums => {
+    for (let right = 0; right < nums.length; right++){
+        for(let left = 0; left < right; left++){
+            const isDuplicate = nums[left] === nums[right];
+            if (isDuplicate) return true
+        }
+    }
+
+    return false;
+}
+
+
+console.log(containsDuplicate([1, 2, 3, 4, 5])); // output: false
+console.log(containsDuplicate([1, 1, 2, 3, 4, 5])); // output: true
+```
 
 <ol>
 <li>We declare a variable called right and initialize it to 0 because we need to keep track of the current index of the rightmost element in the array. We start at 0 because we know that the first element in the array is not a duplicate of itself.</li>
