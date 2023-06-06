@@ -136,3 +136,89 @@ console.log(containsDuplicate([1, 1, 2, 3, 4, 5])); // output: true
 <li>Continue iterating until the end of the array.</li>
 <li>Return false if no duplicates were found.</li>
 </ol>
+
+# isAnagram()
+
+### Sort - HeapSort Space O(1) | QuickSort Space O(log(N))
+
+1. The function isAnagram takes two parameters s and t.
+   - It first checks if the length of the two strings is equal.
+   - If not, it returns false.
+   - If the length is equal, it calls the function reorder on both strings and compares the result
+2. The function reorder takes one parameter str.
+   - It splits the string into an array of characters using the split() method.
+   - It then sorts the array in alphabetical order using the sort() method.
+   - Finally, it joins the sorted array back into a string using the join() method.
+
+```javascript
+const isAnagram = (s, t) => {
+    const isEqual = s.length === t.length;
+    if (!isEqual) return false;
+
+    return reorder(s) === reorder(t);
+}
+
+const reorder = (str) => {
+    str.split('')
+        .sort((a, b) => a.localeCompare(b))
+        .join('')
+}
+
+
+console.log(isAnagram('elbow', 'below')); // output: true
+console.log(isAnagram('players', 'parsley')); // output: true
+console.log(isAnagram('health', 'vanilla')) // output: false
+
+```
+
+### Hash Map - Frequency Counter Time O(N) | Space O(1)
+
+1. The function isAnagram takes in two strings s and t as input and returns a boolean value indicating whether t is an anagram of s.
+2. The function first checks if the lengths of s and t are equal. If they are not equal, it returns false.
+3. The function then calls addFrequency to add the frequency of characters in s to the map.
+4. It then calls subtractFrequency to subtract the frequency of characters in t from the map.
+5. Finally, it calls checkFrequency to check if all the values in the map are 0, indicating that t is an anagram of s.
+
+```javascript
+const isAnagram = (s, t, map = new Map()) => {
+    const isEqual = s.length === t.length;
+    if (!isEqual) return false;
+
+    addFrequency(s, map);
+    subtractFrequency(t, map);
+
+    return checkFrequency(map);
+};
+
+const addFrequency = (str, map) => {
+    for (const char of str) {
+        const count = (map.get(char) || 0) + 1;
+
+        map.set(char, count);
+    }
+};
+
+const subtractFrequency = (str, map) => {
+    for (const char of str) {
+        if (!map.has(char)) continue;
+
+        const count = map.get(char) - 1;
+
+        map.set(char, count);
+    }
+};
+
+const checkFrequency = map => {
+    for (const [char, count] of map) {
+        const isEmpty = count === 0;
+        if (!isEmpty) return false;
+    }
+
+    return true;
+}
+
+console.log(isAnagram('elbow', 'below')); // output: true
+console.log(isAnagram('players', 'parsley')); // output: true
+console.log(isAnagram('health', 'vanilla')) // output: false
+```
+
